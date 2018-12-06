@@ -114,3 +114,10 @@ dmypy.json
 
 proxy_ip.json
 .png
+
+# IntelJ IDEA
+.idea/
+out/
+*.iml
+*.ipr
+*.iws
