@@ -51,11 +51,12 @@ def score_online(dices):
     count = [0, 0, 0, 0, 0, 0]
     sum = 0
     for i in dices:
-        count[i] += 1
-        if count[i] == 3:
+        if count[i] == 2:
             sum += triplet[i] - lone[i] * 3
+            count[i] = 0
         else:
             sum += lone[i]
+            count[i] += 1
     return sum
 
 
