@@ -30,7 +30,7 @@ def score(dices):
 def score_improved(dices):
     """
     比上一种方法优化了计算过程，只需遍历一次counter，且不需创建新结果数列以及从结果数列中移除已打分的骰子
-    复杂度O(2N)
+    复杂度O(M+N)
     """
     triplet = [0, 1000, 200, 300, 400, 500, 600]
     lone = [0, 100, 0, 0, 0, 50, 0]
@@ -53,7 +53,7 @@ def score_online(dices):
     for i in dices:
         count[i] += 1
         if count[i] == 3:
-            sum += triplet[i] - 3 * lone[i]
+            sum += triplet[i] - lone[i] * 3
         else:
             sum += lone[i]
     return sum
