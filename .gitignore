@@ -91,6 +91,7 @@ celerybeat-schedule
 # Environments
 .env
 .venv
+.idea/
 .idea
 env/
 venv/
@@ -115,3 +116,6 @@ dmypy.json
 
 proxy_ip.json
 .png
+
+# git hidden folder
+.git/
