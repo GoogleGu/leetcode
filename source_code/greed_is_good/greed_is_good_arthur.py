@@ -52,7 +52,7 @@ def score_online(dices):
     sum = 0
     for i in dices:
         if count[i] == 2:
-            sum += triplet[i] - lone[i] * 3
+            sum += triplet[i] - lone[i] * 2
             count[i] = 0
         else:
             sum += lone[i]
