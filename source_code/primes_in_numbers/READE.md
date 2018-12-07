@@ -1,4 +1,4 @@
-# 数字中的
+# 数字中的质因数
 
 **链接：https://www.codewars.com/kata/primes-in-numbers**
 
