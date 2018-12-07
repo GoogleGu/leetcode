@@ -1,6 +1,6 @@
 # author: Arthur Gu
 # date: 2018.12.8
-
+from lib.testutil import runtime
 from math import sqrt
 from collections import defaultdict
 
@@ -57,4 +57,20 @@ def prime_factors_vanila(n):
     return output
 
 
-print(prime_factors(7))
+def highest_vote(n):
+    ret = ''
+    for i in range(2, n + 1):
+        num = 0
+        while n % i == 0:
+            num += 1
+            n /= i
+        if num > 0:
+            ret += '({}{})'.format(i, '**%d' % num if num > 1 else '')
+        if n == 1:
+            return ret
+
+
+if __name__ == '__main__':
+    num = 12379341134
+    runtime(prime_factors_vanila, num, run_count=10)
+    runtime(highest_vote, num, run_count=10)

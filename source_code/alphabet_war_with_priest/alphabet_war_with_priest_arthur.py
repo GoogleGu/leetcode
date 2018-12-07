@@ -1,6 +1,8 @@
 # author: Arthur Gu
 # date: 2018.12.7
 
+from lib.testutil import runtime
+
 alphabets = {
     'w': 4,
     'p': 3,
@@ -46,5 +48,22 @@ def alphabet_war(fight):
         result = "Right side wins!"
     return result
 
+
+SWAP = {'j':{'w':'m','p':'q','b':'d','s':'z'}, 't':{'m':'w','q':'p','d':'b','z':'s'}}
+
+
+def highest_voate(fight):
+    s = 0
+
+    for l, c, r in zip(' ' + fight, fight, fight[1:] + ' '):
+        if l + r not in 'tjt':
+            c = SWAP.get(l, {}).get(c, c)
+            c = SWAP.get(r, {}).get(c, c)
+        s += {'w':4, 'p':3, 'b':2, 's':1, 'm':-4, 'q':-3, 'd':-2, 'z':-1}.get(c, 0)
+
+    return ["Right side wins!", "Left side wins!"][s > 0] if s else "Let's fight again!"
+
 if __name__ == '__main__':
-    print(alphabet_war("wololooooo"))
+    fight = "wololooooo"
+    runtime(alphabet_war, fight, run_count=10000)
+    runtime(highest_voate, fight, run_count=10000)
