@@ -19,9 +19,9 @@ public class Primes_in_numbers_Cv {
      * Pollard Rho因数分解
      * @param n 待分解的数
      */
-    static void rho(int n, StringBuffer sb) {
+    private static void rho(int n, StringBuffer sb) {
         if (n < 2) return;
-        for (int i=2; i<=n; i++) {
+        for (int i=2; i<=Math.sqrt(n); i++) {
             while (n != i) {
                 if (n%i != 0) break;//不能整除肯定不是因数
                 addPrimes(i, sb);
@@ -34,9 +34,9 @@ public class Primes_in_numbers_Cv {
     /**
      * 输出格式处理
      */
-    static int lastPrimes, count;
+    private static int lastPrimes, count;
 
-    static void addPrimes(int k, StringBuffer sb) {
+    private static void addPrimes(int k, StringBuffer sb) {
         if (lastPrimes == k) {
             count++;
             return;
