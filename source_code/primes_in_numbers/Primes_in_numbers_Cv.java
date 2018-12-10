@@ -47,8 +47,4 @@ public class Primes_in_numbers_Cv {
         count = 1;
     }
 
-    public static void main (String[] args) {
-        int n = 7775460;
-        System.out.println(factors(n));
-    }
 }
