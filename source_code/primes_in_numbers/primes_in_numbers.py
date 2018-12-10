@@ -72,5 +72,6 @@ def highest_vote(n):
 
 if __name__ == '__main__':
     num = 12379341134
-    runtime(prime_factors_vanila, num, run_count=10)
-    runtime(highest_vote, num, run_count=10)
+    num = 2147483647
+    runtime(prime_factors_vanila, num, run_count=100)
+    # runtime(highest_vote, num, run_count=10)
