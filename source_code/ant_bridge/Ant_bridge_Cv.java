@@ -46,30 +46,24 @@ public class Ant_bridge_Cv {
     }
 
     /**
-     * 翻转与切割
+     * 切割
      */
     private static String turnCutting(final String ants, int sum) {
-        boolean turn = sum / ants.length() % 2 == 1;
-        String a = turn ? new StringBuffer(ants).reverse().toString() : ants;
-
         int cutting = sum % ants.length();
         if (cutting == 0)
-            return turn ? ants : a;
-
-        if (turn)
-            return new StringBuffer(a.substring(0,cutting)).reverse().append(new StringBuffer(a.substring(cutting)).reverse()).toString();
-
-        int surplus = a.length() - cutting;
-        return a.substring(surplus) + a.substring(0,surplus);
+            return ants;
+        int surplus = ants.length() - cutting;
+        return ants.substring(surplus) + ants.substring(0,surplus);
     }
-
 
 
     public static void main (String[] args) {
         System.out.println(antBridge("GFEDCBA", "------.-------")); // CBA GFED
         System.out.println(antBridge("GFEDCBA", "------...-------"));//EDCBA GF  5
 
+        //GFEDCBA
         //ABCDEFG
+        //
         // BA GFEDC
         System.out.println(antBridge("GFEDCBA", "--------..--...------"));// 9
 
