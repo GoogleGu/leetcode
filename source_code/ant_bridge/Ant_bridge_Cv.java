@@ -8,25 +8,6 @@ package ant_bridge;
  */
 public class Ant_bridge_Cv {
 
-// GFEDCBA
-
-// --------..--...----------- 4+5
-// GFE ABCD
-// ABCD EFG AB
-// BA GFEDC
-
-// --------..--.-- 4+3
-// GFE ABCD
-// ABCD EFG
-
-// ------.----  3
-//  GFED ABC
-//  CBA DEFG
-
-//   --.--  3
-//   --..-- 4
-//   -.-.-  5
-
     public static String antBridge(final String ants, final String terrain) {
         if (terrain.length() < 3)
             return ants;
