@@ -1,4 +1,4 @@
-package main;
+package primes_in_numbers;
 
 
 /**
@@ -6,7 +6,7 @@ package main;
  * @author: Meteor
  * @date: 2018/12/10
  */
-public class PrimeFactor {
+public class primes_in_numbers_meteor {
 
     public static String factors(int number) {
         StringBuilder result = new StringBuilder();

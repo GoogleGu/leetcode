@@ -1,4 +1,4 @@
-package com.zcsh.code.tribinacci;
+package primes_in_numbers;
 
 /**
  * @description: 数字中的质因数
