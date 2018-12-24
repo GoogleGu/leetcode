@@ -68,6 +68,7 @@ def collect_kata_stats():
 
 
 def write_stats_to_file(katas, filename):
+    """ 将统计信息以markdown表格形式写入文件中 """
     stats_file = os.path.join(ROOT, filename)
     katas.sort(key=lambda x: datetime.datetime.strptime(x.date, '%Y.%m.%d'))
     contr_set = set(name for kata in katas for name in kata.contributor)
@@ -76,7 +77,7 @@ def write_stats_to_file(katas, filename):
         f.write('# 算法题统计\n\n')
         f.write('**更新时间**：{}\n\n'.format(datetime.datetime.today().strftime('%Y.%m.%d')))
         f.write('| 时间 | 文件名 | 算法名 | 难度(越低越难) {}'.format(''.join('| %s ' % contributor for contributor in contributors)) + '|\n')
-        f.write('| --- ' * (3 + len(contributors) + 1) + '|\n')
+        f.write('| :---: ' * (3 + len(contributors) + 1) + '|\n')
         for kata in katas:
             attendace = ['完成' if name in kata.contributor else '-' for name in contributors ]
             f.write('| {} | {} | {} | {} {}'.format(kata.date,
