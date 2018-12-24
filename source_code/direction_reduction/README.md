@@ -1,5 +1,9 @@
 # 缩减方向
 
+**日期**: 2018.12.24
+
+**等级**: 5
+
 **链接：https://www.codewars.com/kata/directions-reduction**
 
 ## 题目

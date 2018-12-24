@@ -1,5 +1,9 @@
 # 蚂蚁桥
 
+**日期**: 2018.12.11
+
+**等级**: 5
+
 **链接：https://www.codewars.com/kata/ant-bridge**
 
 

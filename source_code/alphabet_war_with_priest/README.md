@@ -1,5 +1,9 @@
 # 字母战争-牧师版
 
+**日期**: 2018.12.7
+
+**等级**: 5
+
 **链接：https://www.codewars.com/kata/alphabet-war-wo-lo-loooooo-priests-join-the-war**
 
 ## 介绍

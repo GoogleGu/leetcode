@@ -1,5 +1,9 @@
 # RGB转换为十六进制
 
+**日期**: 2018.12.18
+
+**等级**: 5
+
 **链接：https://www.codewars.com/kata/rgb-to-hex-conversion**
 
 ## 题目
