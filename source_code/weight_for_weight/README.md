@@ -1,5 +1,9 @@
 # 数字重量
 
+**日期**: 2018.12.10
+
+**等级**: 5
+
 **链接：https://www.codewars.com/kata/weight-for-weight**
 
 ## 题目

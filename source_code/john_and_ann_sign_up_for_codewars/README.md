@@ -1,5 +1,9 @@
 # 约翰与安加入了Codewars
 
+**日期**: 2018.12.23
+
+**等级**: 5
+
 **链接：https://www.codewars.com/kata/john-and-ann-sign-up-for-codewars**
 
 ## 题目

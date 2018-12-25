@@ -1,5 +1,9 @@
 # Tribinacci数列
 
+**日期**: 2018.12.5
+
+**等级**: 6
+
 **链接：https://www.codewars.com/kata/tribonacci-sequence**
 
 Tribinacci 数列是菲比那齐数列的变种，前三项数字可以自定，之后的每项为前三项之和。因此如果一个 Tribinacci 数列的前三项为`[1,1,1]`的话，我们将得到以下数列：

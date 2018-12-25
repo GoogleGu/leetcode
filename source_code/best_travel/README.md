@@ -1,5 +1,9 @@
 # 最佳旅程
 
+**日期**: 2018.12.13
+
+**等级**: 5
+
 **题目链接**：https://www.codewars.com/kata/best-travel
 
 ## 题目

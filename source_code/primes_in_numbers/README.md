@@ -1,5 +1,9 @@
 # 数字中的质因数
 
+**日期**: 2018.12.8
+
+**等级**: 5
+
 **链接：https://www.codewars.com/kata/primes-in-numbers**
 
 ## 题目
