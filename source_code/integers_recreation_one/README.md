@@ -1,5 +1,9 @@
 # 整数：创意1
 
+**日期**: 2018.12.23
+
+**等级**: 5
+
 **链接：https://www.codewars.com/kata/integers-recreation-one**
 
 ## 题目
