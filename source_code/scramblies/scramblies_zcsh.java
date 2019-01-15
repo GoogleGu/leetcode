@@ -12,17 +12,17 @@ public class scramblies_zcsh {
 
         int[] counter = new int[26];
 
-        char[] chars = str1.toCharArray();
+        char[] chars = str2.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             counter[chars[i] - 97]++;
         }
-        char[] chars1 = str2.toCharArray();
+        char[] chars1 = str1.toCharArray();
         for (int i = 0; i < chars1.length; i++) {
             counter[chars1[i] - 97]--;
         }
 
-        for (int i = 0; i < chars1.length; i++) {
-            if (chars1[i] > 0) {
+        for (int i = 0; i < counter.length; i++) {
+            if (counter[i] > 0) {
                 return false;
             }
         }
