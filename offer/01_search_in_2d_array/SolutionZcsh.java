@@ -1,4 +1,4 @@
-public class Solution {
+public class SolutionZcsh {
     public boolean find(int target, int [][] array) {
         int y = array.length - 1;
         int x = 0;
