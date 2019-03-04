@@ -1,4 +1,4 @@
-public class Solution {
+public class SolutionZcsh {
     public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
         
         if (listNode == null) {
