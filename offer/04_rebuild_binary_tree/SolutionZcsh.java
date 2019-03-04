@@ -1,4 +1,4 @@
-public class Solution {
+public class SolutionZcsh {
    public  static TreeNode reConstructBinaryTree(int[] pre, int[] in) {
        TreeNode node = createTree(pre,0,pre.length -1 , in, 0, in.length - 1);
        return node;
