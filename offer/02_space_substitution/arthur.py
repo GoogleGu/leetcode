@@ -15,10 +15,7 @@ class Solution:
         """
         replaced_chars = []
         for char in s:
-            if char == ' ':
-                replaced_chars.append("%20")
-            else:
-                replaced_chars.append(char)
+            replaced_chars.append("%20" if char == ' ' else char)
         return ''.join(replaced_chars)
 
     @staticmethod
