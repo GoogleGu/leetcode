@@ -24,7 +24,7 @@ private int minNumberInRotateArray(int[] array) {
     }
     // 倒叙
     if (array[midIndex] < array[0] && array[midIndex] > array[length - 1]) {
-        return array[0];
+        return array[length - 1];
     }
     // 三点相同
     if (array[midIndex] == array[0] && array[midIndex] == array[length - 1]) {
@@ -74,7 +74,7 @@ private int method2(int[] array) {
         }
         // 倒叙
         if (array[midIndex] < array[0] && array[midIndex] > array[length - 1]) {
-            return array[0];
+            return array[length - 1];
         }
         // 三点相同
         if (array[midIndex] == array[0] && array[midIndex] == array[length - 1]) {
