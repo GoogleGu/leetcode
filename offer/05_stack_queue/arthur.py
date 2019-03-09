@@ -20,4 +20,3 @@ class Solution:
     def transfer_nodes_between_stacks(source_stack, target_stack):
         while source_stack:
             target_stack.append(source_stack.pop())
-
