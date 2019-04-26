@@ -11,6 +11,23 @@
 
 class Solution:
 
+    # 用辅助栈实现
+    def IsPopOrder2(self, pushV, popV):
+        temp = []
+        popI = 0
+        for v in pushV:
+            if v != popV[popI]:
+                temp.append(v)
+            else:
+                popI += 1
+        for i in temp:
+            if temp.pop() != popV[popI]:
+                return False
+            popI += 1
+
+        return True
+
+    # 简单递归实现
     def IsPopOrder(self, pushV, popV):
         # 长度
         size = len(pushV)
