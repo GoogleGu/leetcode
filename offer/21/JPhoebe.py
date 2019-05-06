@@ -1,31 +1,28 @@
 """
-从上往下打印出二叉树的每个节点，同层节点从左至右打印。
+输入两个整数序列，第一个序列表示栈的压入顺序，
+请判断第二个序列是否可能为该栈的弹出顺序。
+假设压入栈的所有数字均不相等。
+例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，
+但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）
 """
 
-# -*- coding:utf-8 -*-
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
 class Solution:
-    # 返回从上到下每个节点值列表，例：[1,2,3]
-    def PrintFromTopToBottom(self, root):
-        if root is None:
-            return []
-        result = []
-        node_sort_list = [root]
-        for node in node_sort_list:
-            result.append(node.val)
-            # 二叉树 -> sortList
-            if node.left is not None:
-                node_sort_list.append(node.left)
-            if node.right is not None:
-                node_sort_list.append(node.right)
-        return result
+    def IsPopOrder(self, pushV, popV):
+        # 模拟出栈
+        data_result = []
+        pop_index = 0
+        for push_value in pushV:
+            data_result.append(push_value)
+            if push_value == popV[pop_index]:
+                data_result.remove(push_value)
+                pop_index += 1
+        # 剩余数出栈
+        for pop_index in range(pop_index, len(popV)):
+            if data_result[len(data_result)-1] == popV[pop_index]:
+                data_result.pop()
+                pop_index += 1
+        if data_result:
+            return False
+        return True
 
-
-
-
-
-
+Solution().IsPopOrder([1,2,3,4,5], [4,5,3,2,1])
