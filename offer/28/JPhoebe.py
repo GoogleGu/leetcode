@@ -37,20 +37,24 @@ class Solution2:
             # 记录倒数第二位的数字
             if index == len(numbers) - 2:
                 last_temp = result
-        # 偶数判断count
-        if length % 2 == 0 and count > 0:
-            return result
+            if index == len(numbers) - 3:
+                last_temp_two = result
+
         # todo 如何判断最后一个数是否为重复的数字
         # 记录倒数第二位的数字
-        elif length % 2 == 1:
-            if count == 1:
-                if last_change_type is not 1:
-                    print(result)
-                    return result
-                elif last_change_type == 1 and last_temp == numbers[len(numbers) - 1]:
-                    print(result)
-                    return result
-            elif count > 1:
+        if count == 1:
+            if last_change_type is not 1:
                 print(result)
                 return result
+            elif last_change_type == 1 and last_temp == numbers[len(numbers) - 1]:
+                print(result)
+                return result
+        elif count == 2:
+            if last_change_type is not 1:
+                return result
+            elif last_change_type == 1 and last_temp_two == numbers[len(numbers)-2]:
+                return result
+        elif count > 1:
+            print(result)
+            return result
         return 0
