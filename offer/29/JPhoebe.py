@@ -11,7 +11,7 @@ class Solution:
             return
         low = left
         high = right
-        key = array[low]  # 第一个值
+        key = array[low]
 
         while low < high:
             while low < high and array[high] >= key:
