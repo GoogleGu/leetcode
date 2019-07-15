@@ -19,16 +19,15 @@ class Solution:
             index = partition(tinput, start, end)
         return tinput[:k]
 
-@pysnooper.snoop()
+# @pysnooper.snoop()
 def partition(tinput, start, end):
-        j = start
-        cmp = tinput[end]
+        first_big_num_index = start
         for i in range(start, end):
-            if tinput[i] < cmp:
-                tinput[i], tinput[j] = tinput[j], tinput[i]
-                j += 1
-        tinput[end], tinput[j] = tinput[j], tinput[end]
-        return j
+            if tinput[i] < tinput[end]:
+                tinput[i], tinput[first_big_num_index] = tinput[first_big_num_index], tinput[i]
+                first_big_num_index += 1
+        tinput[end], tinput[first_big_num_index] = tinput[first_big_num_index], tinput[end]
+        return first_big_num_index
 
 
 if __name__ == '__main__':
