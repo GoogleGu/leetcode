@@ -16,7 +16,9 @@ class Solution:
             self.generate_ugly_number(base_num, 4)
             self.generate_ugly_number(base_num, 5)
             base_index += 1
-        return sorted(self.ugly_numbers)[index-1]
+        if base_index > 0:
+            self.ugly_numbers.sort()
+        return self.ugly_numbers[index-1]
 
     def generate_ugly_number(self, base_num, multiple):
         new_ugly = base_num * multiple
