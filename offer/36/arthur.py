@@ -13,12 +13,12 @@ class Solution:
 
         current_head = pHead1
         while current_head:
-            sequence.add(current_head.val)
+            sequence.add(id(current_head))
             current_head = current_head.next
 
         current_head = pHead2
         while current_head:
-            if current_head.val in sequence:
+            if id(current_head) in sequence:
                 return current_head
             current_head = current_head.next
 
