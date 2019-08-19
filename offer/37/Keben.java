@@ -1,22 +1,11 @@
-
-public class TreeDepth {
-
-
-    public static void main(String[] args) {
-
-    }
-
-    public int TreeDepth(TreeNode root) {
-        return depth(root, 0);
-    }
-
-    public int depth(TreeNode node, int index) {
-        if (node == null) {
-            return index;
+public class Solution {
+    public static int GetNumberOfK(int [] array , int k) {
+        int sum = 0;
+        for(int temp : array){
+            if(temp == k){
+                sum++;
+            }
         }
-        index++;
-        int leftIndex = depth(node.left, index);
-        int rightIndex = depth(node.right, index);
-        return Math.max(leftIndex, rightIndex);
+        return sum;
     }
 }
