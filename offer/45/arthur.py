@@ -18,7 +18,3 @@ class Solution:
                         return False
                 last = this_num
         return True
-
-
-
-
