@@ -10,5 +10,3 @@ class Solution:
 
     def Sum_Solution(self, n):
         return n + (n and self.Sum_Solution(n - 1))
-
-

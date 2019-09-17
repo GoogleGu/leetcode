@@ -5,12 +5,7 @@ class Solution:
         if n == 0:
             return -1
 
-        boys = list(range(0, n))
-        start = 0
-
-        while len(boys) > 1:
-            deleted = (start + m) % len(boys) - 1
-            boys.pop(deleted)
-            start = deleted if deleted >= 0 else 0
-
-        return boys[0]
+        res = 0
+        for i in range(0, n-1):
+            res = (res + m) % (n-i)
+        return res
