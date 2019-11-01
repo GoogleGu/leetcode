@@ -29,7 +29,7 @@ public class Solution {
             count ++;
             TreeNode node;
             if (lineNumber % 2 == 1){
-                // 下一行偶数行 右遍历 栈接受
+                // 下一行偶数行 右遍历
                 node = odd.pop();
                 line.add(node.val);
                 if (node.left != null){
@@ -47,7 +47,7 @@ public class Solution {
                     line = new ArrayList<>();
                 }
             }else{
-                // 下一行技术行 左遍历 队列接受
+                // 下一行技术行 左遍历
                 node = even.pop();
                 line.add(node.val);
                 if (node.right != null){
