@@ -30,7 +30,6 @@ public class Solution {
         queue.offer(pRoot);
         while (!queue.isEmpty()){
             count++;
-            // 下一行技术行 左遍历
             TreeNode node = queue.poll();
             line.add(node.val);
             if (node.left != null){
