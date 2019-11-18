@@ -1,176 +1,133 @@
 # -*- coding:utf-8 -*-
-class Solution:
-
-    def __init__(self):
-        self.stream = []
-
-    def Insert(self, num):
-        # 二分插入
-        return
-
-    def GetMedian(self):
-        n = len(self.stream)
-        if n % 2 == 0:
-            return (self.stream[n//2] + self.stream[n//2 - 1]) / 2
-        else:
-            return self.stream[n//2]
-
 class TreeNode:
 
-    def __init__(self, val, height=1):
+    def __init__(self, val, count=1):
         self.val = val
         self.left = None
         self.right = None
-        self.parent = None
-        self.height = height
-    
-    def find(self, val):
-        if self.val == val:
-            return self
-        elif self.val > val:
-            if self.left is None:
-                return None
-            return self.find(self.left)
+        self.count = count
+
+class Solution:
+
+    def __init__(self):
+        self.tree = AVLTree()
+
+    def Insert(self, num):
+        self.tree.insert(None, self.tree.root, num)
+
+    def GetMedian(self, dummy=None):
+        left_count = get_count(self.tree.root.left)
+        right_count = get_count(self.tree.root.right)
+        if left_count == right_count:
+            return self.tree.root.val
         else:
-            if self.right is None:
-                return None
-            return self.find(self.right)
-    
-    def insert(self, node):
-
-        if self.val > node.val:
-            if self.left is None:
-                self.left = node
-                node.parent = self
+            tmp = None
+            if left_count > right_count:
+                tmp = self.tree.root.left
+                while tmp.right is not None:
+                    tmp = tmp.right
             else:
-                self.left.insert(node)
-        else:
-            if self.right is None:
-                self.right = node
-                node.parent = self
-            else:
-                self.right.insert(node)
-        update_height(self)
-    
-    def __str__(self):
-        return '{}'.format(self.val)
-
-def height(node):
-    if node is None:
-        return 0    
-    else:
-        return node.height
-
-def update_height(node):
-    extra = 0
-    if node.left is not None:
-        extra += 1
-    if node.right is not None:
-        extra += 1
-    node.height = height(node.left) + height(node.right) + extra
+                tmp = self.tree.root.right
+                while tmp.left is not None:
+                    tmp = tmp.left
+            return (self.tree.root.val + tmp.val) / 2
+ 
 
 class AVLTree:
-    """
-    只实现了插入的自平衡，没有实现删除方法和相应的自平衡。
-    """
 
     def __init__(self):
         self.root = None
-        self.node_nums = 0
-    
-    def find(self, val):
-        if not self.root:
-            return None
-        else:
-            return self.root.find(val)
 
-    def insert(self, val):
-        self.node_nums += 1
-        new_node = TreeNode(val)
-        if self.root is None:
-            self.root = new_node
-        else:
-            self.root.insert(new_node)
-        self.rebalance(new_node)
-
-    def rebalance(self, node):
-        while node is not None:
-            update_height(node)
-            if height(node.left) - height(node.right) > 1:
-                self.right_rotate(node)
-            elif height(node.left) - height(node.right) < -1:
-                self.left_rotate(node)
-            node = node.parent
-
-    def right_rotate(self, x_node):
-        """
-        右旋有两种情况：
-            - x.left.right是空，这种情况下和正常avl的右旋方式相同
-            - x.left.right不是空，这种情况下旋转后x.left.right取代原来x的位置成为当前子树的根节点
-        """
-        root = x_node.parent
-        l_node = x_node.left
-        lr_node = l_node.right
-
-        if lr_node is None:
-            # 正常情况: x.left.right是空
-            sub_root = l_node
-
-            x_node.left = lr_node
-            x_node.parent = l_node
-
-            l_node.right = x_node
-            l_node.parent = root
-        else:
-            # 异常情况：x.left.right不是空
-            sub_root = lr_node
-
-            l_node.right = None
-            l_node.parent = lr_node
-
-            x_node.parent = lr_node
-            x_node.left = None
-
-            lr_node.left = l_node            
-            lr_node.right = x_node
-            lr_node.parent = root
-
+    def insert(self, root_parent, root, val):
         if root is None:
-            self.root = sub_root
-        else:
-            if root.left is x_node:
-                root.left = sub_root
-            else:
-                root.right = sub_root
-        update_height(x_node)
-        update_height(sub_root)
-
-    def left_rotate(self, x_node):
-        """
-        左旋同右旋
-        """
-        root = x_node.parent
-        r_node = x_node.right
-        rl_node = r_node.left
-
-        x_node.right = rl_node
-        if rl_node is not None:
-            rl_node.parent = x_node
-
-        r_node.left = x_node
-        x_node.parent = r_node
-
-        r_node.parent = root
-        if root is None:
-            self.root = r_node
-        else:
-            if self.root.left is x_node:
-                self.root.left = r_node
-            else:
-                self.root.right = r_node
+            self.root = TreeNode(val)
         
-        update_height(x_node)
-        update_height(r_node)
+        elif root.val >= val:
+            if root.left is None:
+                root.left = TreeNode(val)
+            else:
+                self.insert(root, root.left, val)
+            root.count = get_count(root.left) + get_count(root.right) + 1
+            if get_count(root.left) - get_count(root.right) == 2:
+                if val < root.left.val:
+                    self.rotate_ll(root_parent, root)
+                else:
+                    self.rotate_lr(root_parent, root)
+        else:
+            if root.right is None:
+                root.right = TreeNode(val)
+            else:
+                self.insert(root, root.right, val)
+            root.count = get_count(root.left) + get_count(root.right) + 1
+            if get_count(root.right) - get_count(root.left) == 2:
+                if val > root.right.val:
+                    self.rotate_rr(root_parent, root)
+                else:
+                    self.rotate_rl(root_parent, root)
+
+    def rotate_ll(self, t_parent, t):
+        k = t.left
+        tm = None
+        while k.right is not None:
+            k.count -= 1
+            tm = k
+            k = k.right
+        if k != t.left:
+            k.left = t.left
+            tm.right = None
+        t.left = None
+        k.right = t
+
+        t.count = get_count(t.left) + get_count(t.right) + 1
+        k.count = get_count(k.left) + t.count + 1
+        
+        if t_parent is None:
+            self.root = k
+        elif t_parent.left == t:
+            t_parent.left = k
+        else:
+            t_parent.right == k
+
+
+    def rotate_rr(self, t_parent, t):
+        k = t.right
+        tm = None
+        while k.left is not None:
+            k.count -= 1
+            tm = k
+            k = k .left
+        if k != t.right:
+            k.right = t.right
+            tm.left = None
+        t.right = None
+        k.left = t
+        
+        t.count = get_count(t.left) + 1
+        k.count = get_count(k.right) + t.count + 1
+
+        if t_parent is None:
+            self.root = k
+        elif t_parent.left == t:
+            t_parent.left = k
+        else:
+            t_parent.right == k
+
+
+    def rotate_lr(self, t_parent, t):
+        self.rotate_rr(t, t.left)
+        self.rotate_ll(t_parent, t)
+
+
+    def rotate_rl(self, t_parent, t):
+        self.rotate_ll(t, t.right)
+        self.rotate_rr(t_parent, t)
+
+
+def get_count(node):
+    if node is None:
+        return 0
+    else:
+        return node.count
 
 
 def print_tree(root):
@@ -199,13 +156,99 @@ def print_tree(root):
     
     return result
 
-if __name__ == "__main__":
-    avl = AVLTree()
-    avl.insert(5)
-    avl.insert(4)
-    avl.insert(3)
-    avl.insert(2)
-    avl.insert(1)
-    avl.insert(0)
-    avl.insert(-1)
-    print(print_tree(avl.root))
+
+# --------------------------------------------------------------------------- #
+
+
+
+
+ 
+class SolutionHeap:
+    def __init__(self):
+        self.minNums=[]
+        self.maxNums=[]
+ 
+    def maxHeapInsert(self,num):
+        self.maxNums.append(num)
+        lens = len(self.maxNums)
+        i = lens - 1
+        while i > 0:
+            if self.maxNums[i] > self.maxNums[(i - 1) / 2]:
+                t = self.maxNums[(i - 1) / 2]
+                self.maxNums[(i - 1) / 2] = self.maxNums[i]
+                self.maxNums[i] = t
+                i = (i - 1) / 2
+            else:
+                break
+ 
+    def maxHeapPop(self):
+        t = self.maxNums[0]
+        self.maxNums[0] = self.maxNums[-1]
+        self.maxNums.pop()
+        lens = len(self.maxNums)
+        i = 0
+        while 2 * i + 1 < lens:
+            nexti = 2 * i + 1
+            if (nexti + 1 < lens) and self.maxNums[nexti + 1] > self.maxNums[nexti]:
+                nexti += 1
+            if self.maxNums[nexti] > self.maxNums[i]:
+                tmp = self.maxNums[i]
+                self.maxNums[i] = self.maxNums[nexti]
+                self.maxNums[nexti] = tmp
+                i = nexti
+            else:
+                break
+        return  t
+ 
+    def minHeapInsert(self,num):
+        self.minNums.append(num)
+        lens = len(self.minNums)
+        i = lens - 1
+        while i > 0:
+            if self.minNums[i] < self.minNums[(i - 1) / 2]:
+                t = self.minNums[(i - 1) / 2]
+                self.minNums[(i - 1) / 2] = self.minNums[i]
+                self.minNums[i] = t
+                i = (i - 1) / 2
+            else:
+                break
+ 
+    def minHeapPop(self):
+        t = self.minNums[0]
+        self.minNums[0] = self.minNums[-1]
+        self.minNums.pop()
+        lens = len(self.minNums)
+        i = 0
+        while 2 * i + 1 < lens:
+            nexti = 2 * i + 1
+            if (nexti + 1 < lens) and self.minNums[nexti + 1] < self.minNums[nexti]:
+                nexti += 1
+            if self.minNums[nexti] < self.minNums[i]:
+                tmp = self.minNums[i]
+                self.minNums[i] = self.minNums[nexti]
+                self.minNums[nexti] = tmp
+                i = nexti
+            else:
+                break
+        return t
+ 
+    def Insert(self, num):
+        if (len(self.minNums)+len(self.maxNums))&1==0:
+            if len(self.maxNums)>0 and num < self.maxNums[0]:
+                self.maxHeapInsert(num)
+                num = self.maxHeapPop()
+            self.minHeapInsert(num)
+        else:
+            if len(self.minNums)>0 and num > self.minNums[0]:
+                self.minHeapInsert(num)
+                num = self.minHeapPop()
+            self.maxHeapInsert(num)
+ 
+    def GetMedian(self,n=None):
+        allLen = len(self.minNums) + len(self.maxNums)
+        if allLen ==0:
+            return -1
+        if allLen &1==1:
+            return self.minNums[0]
+        else:
+            return (self.maxNums[0] + self.minNums[0]+0.0)/2
