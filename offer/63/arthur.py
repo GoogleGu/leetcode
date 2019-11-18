@@ -205,9 +205,9 @@ class SolutionHeap:
         lens = len(self.minNums)
         i = lens - 1
         while i > 0:
-            if self.minNums[i] < self.minNums[(i - 1) / 2]:
-                t = self.minNums[(i - 1) / 2]
-                self.minNums[(i - 1) / 2] = self.minNums[i]
+            if self.minNums[i] < self.minNums[(i - 1) // 2]:
+                t = self.minNums[(i - 1) // 2]
+                self.minNums[(i - 1) // 2] = self.minNums[i]
                 self.minNums[i] = t
                 i = (i - 1) / 2
             else:
