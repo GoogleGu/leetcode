@@ -23,6 +23,7 @@ class Solution:
 
     def Deserialize(self, s):
         
+        
         def decode(s):
             nonlocal index
             index += 1
