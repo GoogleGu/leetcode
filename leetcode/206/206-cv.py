@@ -8,13 +8,19 @@ class ListNode:
 class Solution:
     
     # 无法处理循环链表
-    def reverseList(self, head: ListNode) -> ListNode:
-        if head.next:
-            node = self.reverseList(head.next)
-        
-        node = ListNode(head.val)
-        node.next = self.reverseList(head.next)
+    def reverseList(self, head):
+        # 拿到最后的元素
+        if not head or not head.next:
+            return head
+        node = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return node
 
+    # 多元赋值
+    def reverseList2(self, head):
+        res = None
+        while head:
+            res, res.next, head = head, res, head.next
+        return res
 
-    def recursion(self, head: ListNode) -> ListNode:
-        pass
