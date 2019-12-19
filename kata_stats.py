@@ -6,7 +6,7 @@ import re
 import datetime
 
 
-ROOT = 'source_code'
+ROOT = 'codewars'
 README = 'README.md'
 
 
