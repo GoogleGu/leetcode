@@ -30,7 +30,7 @@ class Solution:
             for i in range(0, amount - interval, interval * 2):
                 lists[i] = self.mergeTwoLists(lists[i], lists[i + interval])
             interval *= 2
-        return lists[0] if amount > 0 else lists
+        return lists[0] if amount > 0 else None
 
 
 res = Solution().mergeKLists([])
