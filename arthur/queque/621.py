@@ -17,4 +17,3 @@ class Solution:
 
         # 否则一定填不满前m-1
         return min_time + k
-
