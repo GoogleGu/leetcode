@@ -7,17 +7,18 @@
 
 class Solution:
     def rotateRight(self, head: ListNode, k: int) -> ListNode:
-        if not head:
+        if head is None:
             return head
         length = 1
         tail_node = head
-        while head.next:
+        while tail_node.next:
             length += 1
             tail_node = tail_node.next
 
-        count = -1
+        count = 1
         new_tail = head
-        while count != k:
+        n = length - k % length
+        while count != n:
             count += 1
             new_tail = new_tail.next
 
