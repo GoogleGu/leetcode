@@ -22,19 +22,4 @@ class Solution:
         return fake_head.next
 
 
-def print_linked_list(head):
-    ll = []
-    while head:
-        ll.append(head.val)
-        head = head.next
-    return ll
 
-
-if __name__ == '__main__':
-    head = ListNode(1)
-    head.next = ListNode(2)
-    head.next.next = ListNode(3)
-    head.next.next.next = ListNode(4)
-    sol = Solution()
-    head = sol.swapPairs(head)
-    print(print_linked_list(head))
