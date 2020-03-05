@@ -13,7 +13,7 @@ def linked_list_to_list(head):
 
 
 if __name__ == '__main__':
-    from arthur.linked_list.leet_172 import Solution, Node
+    from leetcode.linked_list.leet_172 import Solution, Node
     head = Node(1)
     head.next = Node(2)
     head.next.next = Node(3)

@@ -33,7 +33,7 @@ class Solution:
         return new_head.next
 
 if __name__ == '__main__':
-    from arthur.linked_list.main import linked_list_to_list
+    from leetcode.linked_list.main import linked_list_to_list
     head = Node(1)
     head.next = Node(2)
     head.next.next = Node(3)
