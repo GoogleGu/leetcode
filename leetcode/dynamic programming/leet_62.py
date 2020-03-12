@@ -8,11 +8,7 @@
 
 问总共有多少条不同的路径？
 
-
-
 例如，上图是一个7 x 3 的网格。有多少可能的路径？
-
- 
 
 示例 1:
 
@@ -27,7 +23,6 @@
 
 输入: m = 7, n = 3
 输出: 28
-
 """
 
 class Solution:
@@ -42,10 +37,9 @@ class Solution:
         # denominator = m!
         for i in range(1, vertical+1):
             denominator *= i
-        print(numerator, denominator)
         return int(numerator / denominator)
 
 
 if __name__ == '__main__':
-    Solution().uniquePaths(3, 2)
+    print(Solution().uniquePaths(3, 3))
 
