@@ -1,4 +1,9 @@
 class Solution:
+    def maxEnvelopes(self, envelopes):
+        envelopes.sort(key=lambda i: (i[0], -i[1]))
+        nums = [i[1] for i in envelopes]
+        return self.lengthOfLIS(nums)
+
     def lengthOfLIS(self, nums):
         if not nums:
             return 0
@@ -15,16 +20,26 @@ class Solution:
                     if length == max_len:
                         max_len += 1
                     break
-
             else:
                 # 如果这个数字完全拼不进去，说明是已记录的最小值，用它替换长度为1的序列
                 tails[1] = num
-            print(num, tails)
 
         return max_len
 
 
+    def raw_dp(self, envelopes):
+        if not envelopes:
+            return 0
+        envelopes.sort(key=lambda x:(x[0], x[1]))
+
+        dp = [1 for _ in range(len(envelopes))]
+        for i in range(len(envelopes)):
+            for j in range(i):
+                small, big = envelopes[j], envelopes[i]
+                if small[0] < big[0] and small[1] < big[1]:
+                    dp[i] = max(dp[i], dp[j]+1)
+
+        return max(dp)
+
 if __name__ == '__main__':
-    input = [1, 10,9,2,6, 5,3,4]
-    sol = Solution()
-    print(sol.lengthOfLIS(input))
+    print(Solution().maxEnvelopes([[5,4],[6,4],[6,7],[2,3]]))
