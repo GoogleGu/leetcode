@@ -1,6 +1,6 @@
 class Solution:
     def largest1BorderedSquare(self, grid):
-        max_len = 0  # 最大边长
+        max_len = 0  # 
         for i in range(len(grid)):
             for j in range(len(grid[0])):
                 # 每次从已知最大边长的正方形开始尝试
@@ -11,7 +11,6 @@ class Solution:
                     # 即便下右边不全是1，也可能有更大边长的正方形存在，所以继续增加尝试的长度而不直接break
                     if self.lower_edges_are_okay(grid, j, i, temp_len):
                         max_len = temp_len
-
                     temp_len += 1
 
         return max_len * max_len
@@ -41,8 +40,3 @@ class Solution:
         except IndexError:
             return False
         return True
-
-
-
-if __name__ == "__main__":
-    print(Solution().largest1BorderedSquare([[1,1,1],[1,0,1],[1,1,1]]))
