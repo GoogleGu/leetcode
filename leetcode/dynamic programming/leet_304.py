@@ -21,7 +21,6 @@ class NumMatrix:
                 self.cumulated[i][j] = self.cumulated[i][j] + left + top - top_left
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
-        # row1, col1, row2, col2 = row1-1, col1-1, row2-1, col2-1
         total_sum = self.cumulated[row2][col2]
         if row1 > 0 and col1 > 0:
             total_sum += self.cumulated[row1-1][col1-1]
