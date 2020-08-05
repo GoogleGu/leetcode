@@ -1,5 +1,3 @@
-import pprint
-
 class Solution:
     def canPartition(self, nums):
 
