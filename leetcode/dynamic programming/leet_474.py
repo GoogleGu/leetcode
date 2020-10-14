@@ -5,8 +5,6 @@
 
 你的任务是使用给定的 m 个 0 和 n 个 1 ，找到能拼出存在于数组中的字符串的最大数量。每个 0 和 1 至多被使用一次。
 
- 
-
 示例 1:
 
 输入: strs = ["10", "0001", "111001", "1", "0"], m = 5, n = 3
@@ -19,18 +17,32 @@
 解释: 你可以拼出 "10"，但之后就没有剩余数字了。更好的选择是拼出 "0" 和 "1" 。
 
 """
-import pprint
 
 class Solution:
+    """
+    二维的1-0背包问题。
+    """
     def findMaxForm(self, strs, m, n):
         dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
         for seq in strs:
-            cost_1 = seq.count('1')
             cost_0 = seq.count('0')
+            cost_1 = seq.count('1')
             for v_0 in range(m, cost_0-1, -1):
                 for v_1 in range(n, cost_1-1, -1):
                     dp[v_0][v_1] = max(dp[v_0][v_1], 1 + dp[v_0-cost_0][v_1-cost_1])
         return dp[-1][-1]
+    
+    def less_optimized(self, strs, m, n):
+        dp = [[[0 for _ in range(n + 1)] for _ in range(m + 1)] for _ in range(len(strs)+1)]
+        for i, seq in enumerate(strs, start=1):
+            cost_0 = seq.count('0')
+            cost_1 = seq.count('1')
+            for v_0 in range(0, m+1):
+                for v_1 in range(0, n+1):
+                    leave = dp[i-1][v_0][v_1]
+                    take = (1 + dp[i-1][v_0-cost_0][v_1-cost_1] if (v_0 >= cost_0 and v_1 >= cost_1) else 0)
+                    dp[i][v_0][v_1] = max(take, leave)
+        return dp[-1][-1][-1]
         
 if __name__ == "__main__":
     print(Solution().findMaxForm(["10","0001","111001","1","0"], 5, 3))
