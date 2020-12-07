@@ -28,32 +28,34 @@
 1. 向右 -> 向右 -> 向下 -> 向下
 2. 向下 -> 向下 -> 向右 -> 向右
 """
+import pprint
 
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid):
-        if obstacleGrid[0][0]:
-            return 0
-        max_row = len(obstacleGrid[0])
-        max_col = len(obstacleGrid)
-        paths = [[0 for i in range(max_row)] for j in range(max_col)]
+        max_col = len(obstacleGrid[0])
+        max_row = len(obstacleGrid)
+        paths = [[0 for i in range(max_col)] for j in range(max_row)]
         paths[-1][-1] = 0 if obstacleGrid[-1][-1] else 1
-        for i in range(max_row-2, -1, -1):
+        # 初始化下底边和右边
+        for i in range(max_col-2, -1, -1):
             if not obstacleGrid[-1][i]:
                 paths[-1][i] = paths[-1][i+1]
+        for i in range(max_row-2, -1, -1):
+            if not obstacleGrid[i][-1]:
+                paths[i][-1] = paths[i+1][-1]
 
-        for col in range(max_col-2, -1, -1):
-            for row in range(max_row-1, -1, -1):
-                if row+1 < max_row and not obstacleGrid[col][row+1]:
-                    paths[col][row] += paths[col][row+1]
-                if col+1 < max_col and not obstacleGrid[col+1][row]:
-                    paths[col][row] += paths[col+1][row]
+        for row in range(max_row-2, -1, -1):
+            for col in range(max_col-2, -1, -1):
+                if not obstacleGrid[row][col]:
+                    paths[row][col] += paths[row][col+1]
+                    paths[row][col] += paths[row+1][col]
         return paths[0][0]
 
 
 if __name__ == '__main__':
     input = [
-        [0,0,0],
-        [0,1,0],
-        # [0,0,0]
+        [0,0],
+        [1,1],
+        [0,0]
     ]
     print(Solution().uniquePathsWithObstacles(input))
